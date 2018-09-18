@@ -31,6 +31,7 @@ public class EchoServer {
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
 
                             ChannelPipeline cp = socketChannel.pipeline();
+                            //以换行符号为届分包，超出1024长度，则抛出异常。
                             cp.addLast(new LineBasedFrameDecoder(1024));
                             cp.addLast(new StringDecoder());
                             cp.addLast(new EchoServerHandler());
